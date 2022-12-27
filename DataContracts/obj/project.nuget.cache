@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "m7uax9BkuilHU+vY76xqZbSChwPHo47fEmE22wYcIEd3jjndvLGM1wU2uq3e6E0kXV6krLECEAWIGpyQCjWdww==",
+  "success": true,
+  "projectFilePath": "D:\\RVIP2\\DataContracts\\DataContracts.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Тимофей\\.nuget\\packages\\refit\\6.3.2\\refit.6.3.2.nupkg.sha512",
+    "C:\\Users\\Тимофей\\.nuget\\packages\\system.net.http.json\\6.0.0\\system.net.http.json.6.0.0.nupkg.sha512",
+    "C:\\Users\\Тимофей\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Тимофей\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\Тимофей\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

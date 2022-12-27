@@ -1,0 +1,12 @@
+D:\RVIP2\DataContracts\bin\Debug\net6.0\DataContracts.deps.json
+D:\RVIP2\DataContracts\bin\Debug\net6.0\DataContracts.dll
+D:\RVIP2\DataContracts\bin\Debug\net6.0\DataContracts.pdb
+D:\RVIP2\DataContracts\obj\Debug\net6.0\DataContracts.csproj.AssemblyReference.cache
+D:\RVIP2\DataContracts\obj\Debug\net6.0\DataContracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\RVIP2\DataContracts\obj\Debug\net6.0\DataContracts.AssemblyInfoInputs.cache
+D:\RVIP2\DataContracts\obj\Debug\net6.0\DataContracts.AssemblyInfo.cs
+D:\RVIP2\DataContracts\obj\Debug\net6.0\DataContracts.csproj.CoreCompileInputs.cache
+D:\RVIP2\DataContracts\obj\Debug\net6.0\DataContracts.dll
+D:\RVIP2\DataContracts\obj\Debug\net6.0\refint\DataContracts.dll
+D:\RVIP2\DataContracts\obj\Debug\net6.0\DataContracts.pdb
+D:\RVIP2\DataContracts\obj\Debug\net6.0\ref\DataContracts.dll

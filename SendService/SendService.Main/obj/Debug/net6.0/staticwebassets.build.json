@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "hBUObo7a0lk2dHPMIAstVNGSx9duprj5SwAXZfhmpq0=",
+  "Source": "SendService.Main",
+  "BasePath": "_content/SendService.Main",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

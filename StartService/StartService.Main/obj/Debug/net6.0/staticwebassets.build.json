@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "1BtObHWrgdZuOYK+Mpd4q47vSWXWAcG0gt8l/aW6LQk=",
+  "Source": "StartService.Main",
+  "BasePath": "_content/StartService.Main",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

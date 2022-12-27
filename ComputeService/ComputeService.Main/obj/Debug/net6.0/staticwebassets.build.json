@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "JA6JiNBO1v+PkrJ69yzZyxWpzOG+dA/cGKiwY3X7V9M=",
+  "Source": "ComputeService.Main",
+  "BasePath": "_content/ComputeService.Main",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
