@@ -33,8 +33,7 @@ namespace StartService.Main
             GlobalSum.StartTime = DateTime.Now;
             arr = MatrixHelper.Transpon(arr);
             Console.WriteLine($"Время начальное {GlobalSum.StartTime}");
-            GlobalSum.Sum = 0;
-            GlobalSum.Count = 0;
+            GlobalSum.Reset();
             attemts++;
             for (int i = 0; i < length; i++)
             {
@@ -47,22 +46,25 @@ namespace StartService.Main
             Console.WriteLine("Отправили запросы");
 
             DateTime postSend = DateTime.Now;
-            while(true)
+            //дробное деление: целочисленное length/1000 при length < 1000 давало 0
+            double timeoutSeconds = 14 + Math.Pow(length / 1000.0, 2);
+            while(!stoppingToken.IsCancellationRequested)
             {
-                if((DateTime.Now - postSend).TotalSeconds > 14 + length/1000* length /1000)
+                if((DateTime.Now - postSend).TotalSeconds > timeoutSeconds)
                 {
                     Console.WriteLine($"Много времени");
                     break;
                 }
-                if (GlobalSum.Count == _settings.Length)
+                if (GlobalSum.Count >= _settings.Length)
                 {
                     Console.WriteLine($"Все хорошо, вот сумма {GlobalSum.Sum}");
                     Console.WriteLine($"Время {(DateTime.Now - GlobalSum.StartTime).TotalSeconds}");
                     Console.WriteLine($"Время конечное {DateTime.Now}");
                     break;
                 }
-
-            }            
+                //ждём, а не крутим пустой цикл, занимающий ядро на 100%
+                await Task.Delay(TimeSpan.FromMilliseconds(10), stoppingToken);
+            }
         }
     }
 }

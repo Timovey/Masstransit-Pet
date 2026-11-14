@@ -15,12 +15,8 @@ namespace SendService.Main
             var message = context.Message;
             Console.WriteLine("Дабавили массив: ");
             Console.WriteLine(message.Index);
-            //заглушка
-            object locker = new();
-            lock (locker)
-            {
-                GlobalStore.AddArrays(message.Index, message.Array);
-            }
+            GlobalStore.AddArrays(message.Index, message.Array);
+
             return Task.FromResult(context.Message);
         }
     }

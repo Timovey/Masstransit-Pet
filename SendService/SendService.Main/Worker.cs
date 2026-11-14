@@ -34,13 +34,13 @@ namespace SendService.Main
                 //если есть флаг и в сторе лежат массивы
                 if (GlobalStore.Flag && GlobalStore.GetArraysCount() > 0)
                 {
-                    ArrayMessage array;
-                    object locker = new();
-                    lock (locker)
+                    var array = GlobalStore.GetArray();
+                    GlobalStore.IsSendRequest = false;
+                    if (array == null)
                     {
-                        array = GlobalStore.GetArray();
-                        GlobalStore.IsSendRequest = false;
+                        continue;
                     }
+
                     int sum = await _computeApi.GetArraySum(array);
                     await _bus.Publish(new ArrayReadyMessage
                     {
@@ -61,13 +61,15 @@ namespace SendService.Main
                         Port = _settings.Urls,
                         Time = GlobalStore.GetTime()
                     }, stoppingToken);
-                    object locker = new();
-                    lock (locker)
-                    {
-                        GlobalStore.IsSendRequest = true;
-                    }
-                }    
-            } 
+                    GlobalStore.IsSendRequest = true;
+
+                }
+                else
+                {
+                    //работы нет: ждём, а не крутим цикл вхолостую (раньше он занимал ядро на 100%)
+                    await Task.Delay(TimeSpan.FromMilliseconds(10), stoppingToken);
+                }
+            }
         }
        
     }

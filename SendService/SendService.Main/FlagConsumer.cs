@@ -21,12 +21,8 @@ namespace SendService.Main
             if (message.Flag)
             {
                 Console.WriteLine("Устанавливаем флаг");
-                //заглушка
-                object locker = new();
-                lock (locker)
-                {
-                    GlobalStore.Flag = true;
-                }
+                GlobalStore.Flag = true;
+
             }
             return Task.FromResult(context.Message);
         }

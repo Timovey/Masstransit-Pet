@@ -23,11 +23,8 @@ namespace SendService.Main.Controllers
             if(responseMessage != null && responseMessage.Flag && !responseMessage.Port.Contains(_settings.Urls))
             {
                 Console.WriteLine("Устанавливаем флаг");
-                object locker = new();
-                lock (locker)
-                {
-                    GlobalStore.Flag = true;
-                }
+                GlobalStore.Flag = true;
+
             }
             
 

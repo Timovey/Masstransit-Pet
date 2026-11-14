@@ -13,20 +13,19 @@ namespace BusService.Main
         public RequestConsumer()
         {
         }
-        public Task Consume(ConsumeContext<RequestMessage> context)
+        public async Task Consume(ConsumeContext<RequestMessage> context)
         {
             RequestMessage message = context.Message;
 
             //Console.WriteLine("Всего портов: ");
             Console.WriteLine("Пришел запрос");
 
-            context.Publish<NewRequestMessage>(new
+            // без await исключение публикации терялось, а сообщение могло не уйти
+            await context.Publish<NewRequestMessage>(new
             {
                 Port = message.Port,
                 Time = message.Time
             });
-
-            return Task.FromResult(context.Message);
         }
     }
 }

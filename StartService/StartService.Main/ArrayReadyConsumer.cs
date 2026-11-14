@@ -16,9 +16,8 @@ namespace StartService.Main
         {
             var message = context.Message;
             //Console.WriteLine(message.Index);
-            //заглушка
-            GlobalSum.Sum += message.Sum;
-            GlobalSum.AddCount();
+            //консьюмер вызывается параллельно, поэтому сумма и счётчик обновляются атомарно
+            GlobalSum.Add(message.Sum);
         }
     }
 }

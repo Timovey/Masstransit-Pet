@@ -13,6 +13,9 @@ namespace SendService.Main
             _settings = options.Value;
         }
 
+        /// <summary>Интервал проверки флага вместо активного ожидания.</summary>
+        private static readonly TimeSpan PollInterval = TimeSpan.FromMilliseconds(10);
+
         public async Task Consume(ConsumeContext<NewRequestMessage> context)
         {
             var message = context.Message;
@@ -30,8 +33,11 @@ namespace SendService.Main
                 Console.WriteLine("У нас нет флага");
                 Console.WriteLine("Ждем флага");
             }
+            //раньше здесь был пустой цикл: поток консьюмера крутился на 100% CPU, а без volatile
+            //JIT мог закешировать значение флага, и цикл становился бесконечным
             while(!GlobalStore.Flag)
             {
+                await Task.Delay(PollInterval, context.CancellationToken);
             }
 
             Console.WriteLine("Наше время");
@@ -39,17 +45,14 @@ namespace SendService.Main
             if (GlobalStore.GetTime() > message.Time)
             {
                 Console.WriteLine("Отправили флаг");
-                object locker = new();
-                lock (locker)
-                {
-                    GlobalStore.Flag = false;
-                    //context.Publish<ResponseMessage>(new
-                    //{
-                    //    Port = _settings.Urls,
-                    //    Time = GlobalStore.GetTime(),
-                    //    Flag = true
-                    //});
-                }
+                GlobalStore.Flag = false;
+                //context.Publish<ResponseMessage>(new
+                //{
+                //    Port = _settings.Urls,
+                //    Time = GlobalStore.GetTime(),
+                //    Flag = true
+                //});
+
                 HttpClient client = new HttpClient();
                 string path = String.Concat(message.Port, "/response/SetFlag");
                 Console.WriteLine("По путы");
@@ -73,6 +76,10 @@ namespace SendService.Main
                     if(GlobalStore.GetTime() > message.Time)
                     {
                         isMore = true;
+                    }
+                    else
+                    {
+                        await Task.Delay(PollInterval, context.CancellationToken);
                     }
                 }
                 Console.WriteLine("Отправляем флаг");

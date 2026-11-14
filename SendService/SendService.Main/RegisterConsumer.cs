@@ -15,20 +15,16 @@ namespace SendService.Main
         public Task Consume(ConsumeContext<NewRegisterMessage> context)
         {
             var message = context.Message;
-            //заглушка
-            object locker = new();
-            lock(locker)
+            if (message.FlagPort != null)
             {
-                if (message.FlagPort != null)
-                {
-                    GlobalStore.Flag = _settings.Urls.Contains(message.FlagPort);
-                }
-                GlobalStore.SetPorts(message.Ports);
-                Console.WriteLine("Флаг ");
-                Console.WriteLine(GlobalStore.Flag);
-                Console.WriteLine("Порты: ");
-                Console.WriteLine(GlobalStore.GetPorts().Count);
+                GlobalStore.Flag = _settings.Urls.Contains(message.FlagPort);
             }
+            GlobalStore.SetPorts(message.Ports);
+            Console.WriteLine("Флаг ");
+            Console.WriteLine(GlobalStore.Flag);
+            Console.WriteLine("Порты: ");
+            Console.WriteLine(GlobalStore.GetPorts().Count);
+
             return Task.FromResult(context.Message);
         }
     }
